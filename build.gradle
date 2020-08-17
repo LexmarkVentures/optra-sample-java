@@ -1,0 +1,40 @@
+
+plugins {
+    // Apply the java plugin to add support for Java
+    id 'java'
+
+    // Apply the groovy plugin to also add support for Groovy (needed for Spock)
+    id 'groovy'
+
+    // Apply the idea plugin if you use IntelliJ (could also use the eclipse plugin)
+    id 'idea'
+
+    // Useful for creating a "fat jar" of the application.
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:28.0-jre'
+
+    // Azure device client SDK
+	implementation 'com.microsoft.azure.sdk.iot:iot-device-client:1.25.0'
+
+    // Simple JSON apis.
+    implementation 'org.json:json:20180813'
+
+    // Logging
+    implementation 'org.slf4j:slf4j-log4j12:2.0.0-alpha1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.13.3'
+
+    // Use the latest Groovy version for Spock testing
+    testImplementation 'org.codehaus.groovy:groovy-all:3.0.0'
+
+    // Use the Spock testing and specification framework
+    testImplementation 'org.spockframework:spock-core:2.0-M4-groovy-3.0'
+    testImplementation 'junit:junit:4.12'
+}

@@ -1,0 +1,12 @@
+
+FROM openjdk:latest as build
+ADD . .
+WORKDIR /
+RUN ./gradlew shadowJar
+RUN mv /build/libs/optra-sample-java-all.jar /
+
+
+FROM openjdk:latest
+WORKDIR /
+COPY --from=build /optra-sample-java-all.jar /
+CMD ["java", "-classpath", ".:optra-sample-java-all.jar", "-Dorg.slf4j.simpleLogger.logFile=System.out", "com.lexmark.optra.Skill"]
